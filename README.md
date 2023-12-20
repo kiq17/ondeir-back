@@ -131,20 +131,41 @@ Api REST criada para enviar e receber dados da aplicação frontend, responsáve
 | `/comments/:placeId`| `POST`     |   ✔️     |      ✔️  | Cria um comentário em uma postagem|
 | `/comments/toggle/:commentId`| `POST`     |   ✔️     |      ✔️  | Incrementa ou decrementa o like/dislike|
 
+## Detalhamento de rotas
+
+```
+/users/login
+```
+
+Verifica se o e-mail está presente no banco de dados e checa se o hash da senha guardada é igual ao valor da requisição, após estas etapas é criado um token JWT utilizando um payload e tempo de expiração.
+
+```
+/users/check/code
+```
+
+O código é vinculado a um usuário para verificar se o mesmo confirmou o e-mail ou não. Os códigos de verificação são enviados por e-mail e possuem um tempo de expiração sendo assim após certo período ele é excluído do banco de dados, nesse caso o usuário precisa logar novamente pra ser enviado um novo código.
+
+```
+/comments/toggle/:commentId
+```
+
+Realiza a função de toggle para like e dislike. Um usuário ao avaliar o comentário com um like ou dislike e clicar novamente nele faz com que o valor seja zerado, para isso é salvo o usuário que realizou a ação e qual o tipo (like ou dislike). No caso de um usuário avaliar um comentário com like e após isso avaliar o mesmo comentário com um dislike o like é retirado e o dislike incrementado, se por ventura ele clicar novamente no dislike o valor é zerado como explicado anteriormente.
 
 
 ## Aprendizados
 
-Um dos principais foram a criação dos middlewares tanto de autentificação quanto o de validação do dados, durante o processe pude aprender mais sobre tokens JWT e sobre o yup, ferramenta utilizada para ajudar na validação dos dados. A organização em controllers e services foi uma maneira nova de lidar com construção de api comparadas as que eu contrui anteriormente.
+Uns dos principais foram a criação dos middlewares tanto de autentificarão quanto o de validação dos dados, durante o processe pude aprender mais sobre tokens JWT e sobre o yup, ferramenta utilizada para ajudar na validação dos dados. A organização em controllers e services foi uma maneira nova de lidar com construção de api comparadas as que eu construí anteriormente.
 
 
 ## Melhorias
 
 O projeto ainda pode melhorar bastante, por isso ainda vou realizar certas atualizações como:
 
-- Refatorações
-- Testes
-- Arquitetura
+- [ ] Refatorações
+
+- [ ] Testes
+
+- [ ] Arquitetura
 
 Durante o projeto fui aprendendo sobre algunas tópicos que são interessantes para manter uma boa perfomance e agora vou poder focar neles.
 
